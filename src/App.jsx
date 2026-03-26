@@ -360,7 +360,7 @@ export default function App() {
                     <p className="mb-2 text-xs uppercase tracking-[0.32em] text-sky-200/60">Goz</p>
                     <p className="flex items-center gap-3 text-sm text-slate-200">
                       <LoaderCircle className="h-4 w-4 animate-spin text-sky-300" />
-                      Thinking with Groq...
+                      Thinking with Goz...
                     </p>
                   </div>
                 ) : null}
