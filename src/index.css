@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #f8fbff;
+  background:
+    radial-gradient(circle at top left, rgba(69, 183, 255, 0.16), transparent 28%),
+    linear-gradient(140deg, #05070d 0%, #0b1221 46%, #09101c 100%);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(69, 183, 255, 0.35);
+}
+
+@layer components {
+  .panel {
+    @apply rounded-3xl border border-white/10 bg-panel/70 backdrop-blur-xl shadow-panel;
+  }
+
+  .grid-glow {
+    background-image:
+      linear-gradient(rgba(143, 186, 255, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(143, 186, 255, 0.06) 1px, transparent 1px);
+    background-size: 46px 46px;
+  }
+}
