@@ -1,4 +1,4 @@
-import { gozSystemPrompt } from './gozSystemPrompt.js';
+import { getPathwayPrompt, gozBasePrompt } from './gozPrompts.js';
 
 function json(response, statusCode, payload) {
   response.statusCode = statusCode;
@@ -48,6 +48,7 @@ export async function handleChat(request, response, env) {
   const messages = Array.isArray(payload.messages) ? payload.messages : [];
   const selection =
     payload.selection && typeof payload.selection === 'object' ? payload.selection : null;
+  const pathwayPrompt = getPathwayPrompt(selection);
 
   if (!messages.length && !selection) {
     json(response, 400, { error: 'No conversation messages were provided.' });
@@ -67,13 +68,13 @@ export async function handleChat(request, response, env) {
         messages: [
           {
             role: 'system',
-            content: gozSystemPrompt,
+            content: [gozBasePrompt, pathwayPrompt?.prompt].filter(Boolean).join('\n\n'),
           },
           ...(selection
             ? [
                 {
                   role: 'user',
-                  content: `The user selected pathway ${selection.id}: ${selection.title}. Start that pathway now and follow the system prompt exactly. Do not ask them to choose again.`,
+                  content: `The user selected pathway ${selection.id}: ${selection.title}. Start this pathway now. Keep the energy strong, follow the selected prompt, and do not ask them to choose again.`,
                 },
               ]
             : []),
